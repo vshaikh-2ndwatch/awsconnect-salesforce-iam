@@ -154,7 +154,7 @@ resource "aws_iam_role" "submit_transcribe_job" {
 resource "aws_iam_role_policy" "sig4_request_to_s3_policy" {
   count = local.ConnectRecordingS3BucketNameHasValue ? 1 : 0
   name = "sfSig4RequestToS3RolePolicy"
-  role = aws_iam_role.sig4_request_to_s3.id
+  role = aws_iam_role.sig4_request_to_s3[0].id
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -169,6 +169,7 @@ resource "aws_iam_role_policy" "sig4_request_to_s3_policy" {
 }
 
 resource "aws_iam_role" "sig4_request_to_s3" {
+  count = local.PostcallRecordingImportEnabledCondition ? 1 : 0
   name                = "sfSig4RequestToS3Role"
   path                = "/"
   assume_role_policy  = data.aws_iam_policy_document.lambda-edge-assume-role-policy.json
@@ -714,7 +715,7 @@ resource "aws_iam_role_policy" "execute_aws_service_connect_audio_recording_iam_
       {
         Action   = ["iam:PassRole"]
         Effect   = "Allow"
-        Resource = aws_iam_role.sig4_request_to_s3.arn
+        Resource = aws_iam_role.sig4_request_to_s3[count.index].arn
       },
     ]
   })                                                         

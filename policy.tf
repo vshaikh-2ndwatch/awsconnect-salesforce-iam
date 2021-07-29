@@ -1,7 +1,4 @@
 #IAM Policies
-
-# ToDo: invokeSfExecuteAWSServicePolicy - dependency on lambda - sfExecuteAWSService.Arn
-
 resource "aws_iam_policy" "invoke_execute_aws_service_policy" {
   name        = "invokeSfExecuteAWSServicePolicy"
   path        = "/"
