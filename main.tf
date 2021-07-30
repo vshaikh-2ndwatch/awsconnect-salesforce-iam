@@ -51,6 +51,10 @@ locals {
                         concat([""],(local.PrivateVpcEnabledCondition ? [data.aws_iam_policy.vpc_policy[0].arn] :[""])),
                         [data.aws_iam_policy.cloud_watch_policy.arn])}"
 
+  Managed_Policies_VPC_CloudWatch_Only ="${concat(
+                        concat([""],(local.PrivateVpcEnabledCondition ? [data.aws_iam_policy.vpc_policy[0].arn] :[""])),
+                        [data.aws_iam_policy.cloud_watch_policy.arn])}"
+
   #Hardcoded values 
   realtime_queue_metrics_lambda_function_name = "sfRealTimeQueueMetrics"
   invoke_api_lambda_function_name = "sfInvokeAPI"

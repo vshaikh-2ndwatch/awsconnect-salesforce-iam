@@ -798,7 +798,7 @@ resource "aws_iam_role" "execute_aws_service" {
   name               = "sfExecuteAWSServiceRole"
   path               = "/"
   assume_role_policy  = data.aws_iam_policy_document.lambda-assume-role-policy.json
-  managed_policy_arns = [data.aws_iam_policy.cloud_watch_policy.arn]
+  managed_policy_arns = local.Managed_Policies_VPC_CloudWatch_Only 
 }
 
 
