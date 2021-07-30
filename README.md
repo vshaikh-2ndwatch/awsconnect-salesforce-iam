@@ -1,6 +1,4 @@
 # AWS Connect-Salesforce Lambda Package - IAM Resources
-Apply complete! Resources: 45 added, 0 changed, 0 destroyed.
-vshaikh@tx-ps-mac-0834 awsconnect-salesforce-iam % terraform-docs markdown table .
 ## Requirements
 
 | Name | Version |
